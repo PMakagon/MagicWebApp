@@ -7,6 +7,7 @@ import ru.hogwards.school.domain.Student;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication
 public class MagicWebAppApplication {
@@ -19,11 +20,11 @@ public class MagicWebAppApplication {
         Faculty faculty1 = new Faculty(1,"aa","red");
         Faculty faculty2 = new Faculty(2,"ab","blue");
         Faculty faculty3 = new Faculty(3,"ac","green");
-        ArrayList<Faculty> faculties = new ArrayList<>();
+        List<Faculty> faculties = new ArrayList<>();
         faculties.add(faculty1);
         faculties.add(faculty2);
         faculties.add(faculty3);
-        ArrayList<Student> students = new ArrayList<>();
+        List<Student> students = new ArrayList<>();
         students.add(student1);
         students.add(student2);
         students.add(student3);
