@@ -5,7 +5,7 @@ import ru.hogwards.school.domain.Student;
 import ru.hogwards.school.services.StudentService;
 import java.util.Collection;
 
-
+@RestController
 @RequestMapping("/student")
 public class StudentController {
 

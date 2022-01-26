@@ -1,9 +1,9 @@
 package ru.hogwards.school.services;
 
 import org.springframework.stereotype.Service;
-import ru.hogwards.school.domain.Faculty;
 import ru.hogwards.school.domain.Student;
 import ru.hogwards.school.exceptions.BadRequestException;
+import ru.hogwards.school.exceptions.ObjectNotFoundException;
 import ru.hogwards.school.exceptions.WrongKeyException;
 
 import javax.annotation.PostConstruct;
@@ -24,11 +24,17 @@ public class StudentServiceImpl implements StudentService{
         addStudent("stud2",2);
     }
 
+    private void checkIsAvailable(long id){
+        if(id > key){
+            throw new ObjectNotFoundException("Object not found");
+        }
+    }
+
     private void incrementKey() {
         key++;
     }
 
-    private void dicrementKey() {
+    private void decrementKey() {
         if(key>0){
             key--;
         }
@@ -63,11 +69,13 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student getStudent(long id) {
+        checkIsAvailable(id);
         return studentData.get(id);
     }
 
     @Override
     public Student editStudent(long id, String name, int age) {
+        checkIsAvailable(id);
         Student studentToEdit = studentData.get(id);
         studentToEdit.setName(name);
         studentToEdit.setAge(age);
@@ -81,6 +89,8 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student removeStudent(long id) {
+        checkIsAvailable(id);
+        decrementKey();
         return studentData.remove(id);
     }
 }

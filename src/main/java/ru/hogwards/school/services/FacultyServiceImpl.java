@@ -3,6 +3,7 @@ package ru.hogwards.school.services;
 import org.springframework.stereotype.Service;
 import ru.hogwards.school.domain.Faculty;
 import ru.hogwards.school.exceptions.BadRequestException;
+import ru.hogwards.school.exceptions.ObjectNotFoundException;
 import ru.hogwards.school.exceptions.WrongKeyException;
 
 import javax.annotation.PostConstruct;
@@ -24,11 +25,17 @@ public class FacultyServiceImpl implements FacultyService {
         addFaculty("a2", "a2");
     }
 
+    private void checkIsAvailable(long id){
+        if(id > key){
+            throw new ObjectNotFoundException("Object not found");
+        }
+    }
+
     private void incrementKey() {
         key++;
     }
 
-    private void dicrementKey() {
+    private void decrementKey() {
         if(key>0){
             key--;
         }
@@ -63,11 +70,13 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Faculty getFaculty(long id) {
+        checkIsAvailable(id);
         return facultyData.get(id);
     }
 
     @Override
     public Faculty editFaculty(long id,String name, String color) {
+        checkIsAvailable(id);
         Faculty facultyToEdit = facultyData.get(id);
         facultyToEdit.setName(name);
         facultyToEdit.setColor(color);
@@ -81,7 +90,8 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Faculty removeFaculty(long id) {
-        dicrementKey();
+        checkIsAvailable(id);
+        decrementKey();
         return facultyData.remove(id);
     }
 }
