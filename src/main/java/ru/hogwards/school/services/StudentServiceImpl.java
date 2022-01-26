@@ -37,8 +37,9 @@ public class StudentServiceImpl implements StudentService{
     private void decrementKey() {
         if(key>0){
             key--;
+        }else{
+            throw new WrongKeyException("Вы не должны это увидеть никогда");
         }
-        throw new WrongKeyException("Вы не должны это увидеть никогда");
     }
 
     private void checkForNull(Object object, Object object2) {

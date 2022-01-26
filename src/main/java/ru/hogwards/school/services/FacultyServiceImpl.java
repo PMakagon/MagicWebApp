@@ -23,6 +23,7 @@ public class FacultyServiceImpl implements FacultyService {
     public void sdada() {
         addFaculty("a", "a");
         addFaculty("a2", "a2");
+        System.out.println(key);
     }
 
     private void checkIsAvailable(long id){
@@ -38,8 +39,9 @@ public class FacultyServiceImpl implements FacultyService {
     private void decrementKey() {
         if(key>0){
             key--;
+        }else{
+            throw new WrongKeyException("Вы не должны это увидеть никогда");
         }
-        throw new WrongKeyException("Вы не должны это увидеть никогда");
     }
 
 
