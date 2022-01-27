@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -88,6 +89,11 @@ public class FacultyServiceImpl implements FacultyService {
     @Override
     public Collection<Faculty> getAll() {
         return Collections.unmodifiableCollection(facultyData.values());
+    }
+
+    @Override
+    public Collection<Faculty> filterByColor(String color) {
+        return getAll().stream().filter(student -> student.getColor().equals(color)).collect(Collectors.toUnmodifiableList());
     }
 
     @Override

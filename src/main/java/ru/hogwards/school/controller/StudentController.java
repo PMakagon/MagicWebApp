@@ -15,17 +15,17 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PostMapping("/create") /// http://localhost:8080/student/create
+    @PostMapping("/create") /// http://localhost:8080/school/student/create
     public Student createStudent(String name, int age){
         return studentService.addStudent( name, age);
     }
 
-    @GetMapping("{id}") /// http://localhost:8080/student/1
+    @GetMapping("{id}") /// http://localhost:8080/school/student/1
     public Student getFaculty(@PathVariable long id){
         return studentService.getStudent(id);
     }
 
-    @GetMapping("/getAll") /// http://localhost:8080/student/getAll
+    @GetMapping("/getAll") /// http://localhost:8080/school/student/getAll
     public Collection<Student> getStudent(){
         return studentService.getAll();
     }
@@ -35,7 +35,12 @@ public class StudentController {
         return studentService.editStudent(id,name,age);
     }
 
-    @DeleteMapping("/remove/{id}") /// http://localhost:8080/student/remove/1
+    @GetMapping("/filter/age/{age}")
+    public Collection<Student> filterByAge(@PathVariable int age){
+        return studentService.filterByAge(age);
+    }
+
+    @DeleteMapping("/remove/{id}") /// http://localhost:8080/school/student/remove/1
     public Student removeStudent(@PathVariable long id){
         return studentService.removeStudent(id);
     }

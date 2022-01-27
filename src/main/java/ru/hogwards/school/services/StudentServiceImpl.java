@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService{
@@ -52,6 +53,11 @@ public class StudentServiceImpl implements StudentService{
         if (object == null) {
             throw new BadRequestException();
         }
+    }
+
+    @Override
+    public Collection<Student> filterByAge(int age){
+       return getAll().stream().filter(student -> student.getAge()==age).collect(Collectors.toUnmodifiableList());
     }
 
     @Override

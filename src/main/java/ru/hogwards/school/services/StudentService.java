@@ -12,5 +12,6 @@ public interface StudentService {
     Student getStudent(long id);
     Student editStudent(long id,String name, int age);
     Collection<Student> getAll();
+    Collection<Student> filterByAge(int age);
     Student removeStudent(long id);
 }
