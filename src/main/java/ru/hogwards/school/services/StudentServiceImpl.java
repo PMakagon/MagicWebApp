@@ -18,7 +18,12 @@ public class StudentServiceImpl implements StudentService{
         this.studentRepository = studentRepository;
     }
 
-    
+    private void checkForNull(Object object) {
+        if (object == null) {
+            throw new BadRequestException();
+        }
+    }
+
     @Override
     public Collection<Student> getByAge(int age){
        return getAll().stream().filter(student -> student.getAge()==age).collect(Collectors.toUnmodifiableList());
@@ -26,6 +31,7 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student addStudent(Student student) {
+        checkForNull(student);
         return studentRepository.save(student);
     }
 
@@ -36,6 +42,7 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student editStudent(Student student) {
+        checkForNull(student);
         return studentRepository.save(student);
     }
 

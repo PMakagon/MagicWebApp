@@ -2,6 +2,7 @@ package ru.hogwards.school.services;
 
 import org.springframework.stereotype.Service;
 import ru.hogwards.school.domain.Faculty;
+import ru.hogwards.school.exceptions.BadRequestException;
 import ru.hogwards.school.repository.FacultyRepository;
 import java.util.Collection;
 import java.util.Collections;
@@ -16,9 +17,15 @@ public class FacultyServiceImpl implements FacultyService {
         this.facultyRepository = facultyRepository;
     }
 
+    private void checkForNull(Object object) {
+        if (object == null) {
+            throw new BadRequestException();
+        }
+    }
 
     @Override
     public Faculty addFaculty(Faculty faculty) {
+        checkForNull(faculty);
         return facultyRepository.save(faculty);
     }
 
@@ -29,6 +36,7 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Faculty editFaculty(Faculty faculty) {
+        checkForNull(faculty);
         return facultyRepository.save(faculty);
     }
 
