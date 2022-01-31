@@ -2,7 +2,6 @@ package ru.hogwards.school.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.hogwards.school.domain.Faculty;
-import ru.hogwards.school.domain.Student;
 import ru.hogwards.school.services.FacultyService;
 
 import java.util.Collection;
@@ -18,9 +17,9 @@ public class FacultyController {
         this.facultyService = facultyService;
     }
 
-    @PostMapping("/create") /// http://localhost:8080/school/faculty/create
-    public Faculty createFaculty( String name, String color){
-       return facultyService.addFaculty( name, color);
+     @PostMapping() /// http://localhost:8080/school/faculty/create
+    public Faculty createFaculty( @RequestBody Faculty faculty){
+       return facultyService.addFaculty(faculty);
     }
 
     @GetMapping("{id}") /// http://localhost:8080/school/faculty/1
@@ -33,17 +32,17 @@ public class FacultyController {
         return facultyService.getAll();
     }
 
-    @PutMapping("/edit/{id}")
-    public Faculty editFaculty(@PathVariable long id, @RequestParam String name, @RequestParam String color){
-        return facultyService.editFaculty(id,name,color);
+    @PutMapping("{id}")
+    public Faculty editFaculty(@RequestBody Faculty faculty){
+        return facultyService.editFaculty(faculty);
     }
 
-    @GetMapping("/filter/color/{color}")
-    public Collection<Faculty> filterByColor(@PathVariable String color){
-        return facultyService.filterByColor(color);
+    @GetMapping("/color/{color}")
+    public Collection<Faculty> getByColor(@PathVariable String color){
+        return facultyService.getByColor(color);
     }
 
-    @DeleteMapping("/remove/{id}") /// http://localhost:8080/school/faculty/remove/1
+    @DeleteMapping("{id}") /// http://localhost:8080/school/faculty/remove/1
     public Faculty removeFaculty(@PathVariable long id){
         return facultyService.removeFaculty(id);
     }

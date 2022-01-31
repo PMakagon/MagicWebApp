@@ -15,9 +15,9 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PostMapping("/create") /// http://localhost:8080/school/student/create
-    public Student createStudent(String name, int age){
-        return studentService.addStudent( name, age);
+    @PostMapping() /// http://localhost:8080/school/student/create
+    public Student createStudent(@RequestBody Student student){
+        return studentService.addStudent(student);
     }
 
     @GetMapping("{id}") /// http://localhost:8080/school/student/1
@@ -30,17 +30,17 @@ public class StudentController {
         return studentService.getAll();
     }
 
-    @PutMapping("/edit/{id}")
-    public Student editStudent(@PathVariable long id, @RequestParam String name, @RequestParam int age){
-        return studentService.editStudent(id,name,age);
+    @PutMapping("{id}")
+    public Student editStudent(@RequestBody Student student){
+        return studentService.editStudent(student);
     }
 
-    @GetMapping("/filter/age/{age}")
-    public Collection<Student> filterByAge(@PathVariable int age){
-        return studentService.filterByAge(age);
+    @GetMapping("/age/{age}")
+    public Collection<Student> getByAge(@PathVariable int age){
+        return studentService.getByAge(age);
     }
 
-    @DeleteMapping("/remove/{id}") /// http://localhost:8080/school/student/remove/1
+    @DeleteMapping("{id}") /// http://localhost:8080/school/student/remove/1
     public Student removeStudent(@PathVariable long id){
         return studentService.removeStudent(id);
     }
