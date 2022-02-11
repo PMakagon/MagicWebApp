@@ -31,8 +31,8 @@ public class StudentServiceImpl implements StudentService{
     public Student addStudent(Student student) {
         checkForNull(student);
         student.setId(++key);
-        studentData.put(key, student);
-        return studentData.get(student.getId());
+        studentData.put(student.getId(), student);
+        return student;
     }
 
     @Override

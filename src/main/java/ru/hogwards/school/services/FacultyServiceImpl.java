@@ -27,8 +27,8 @@ public class FacultyServiceImpl implements FacultyService {
     public Faculty addFaculty(Faculty faculty) {
         checkForNull(faculty);
         faculty.setId(++key);
-        facultyData.put(key, faculty);
-        return facultyData.get(faculty.getId());
+        facultyData.put(faculty.getId(), faculty);
+        return faculty;
     }
 
     @Override
