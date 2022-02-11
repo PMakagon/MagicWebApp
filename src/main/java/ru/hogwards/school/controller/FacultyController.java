@@ -18,7 +18,7 @@ public class FacultyController {
         this.facultyService = facultyService;
     }
 
-     @PostMapping() /// http://localhost:8080/school/faculty/create
+     @PostMapping /// http://localhost:8080/school/faculty/create
     public Faculty createFaculty( @RequestBody Faculty faculty){
        return facultyService.addFaculty(faculty);
     }

@@ -12,4 +12,5 @@ public class MagicWebAppApplication {
         SpringApplication.run(MagicWebAppApplication.class, args);
     }
 
+
 }

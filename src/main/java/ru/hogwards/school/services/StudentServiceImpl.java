@@ -26,7 +26,9 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Collection<Student> getByAge(int age){
-       return getAll().stream().filter(student -> student.getAge()==age).collect(Collectors.toUnmodifiableList());
+       return getAll().stream()
+               .filter(student -> student.getAge()==age)
+               .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
