@@ -9,5 +9,5 @@ public interface StudentService {
     Student editStudent(Student student);
     Collection<Student> getAll();
     Collection<Student> getByAge(int age);
-    Student removeStudent(long id);
+    void removeStudent(long id);
 }

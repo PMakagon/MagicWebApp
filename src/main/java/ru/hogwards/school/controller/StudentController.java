@@ -1,5 +1,6 @@
 package ru.hogwards.school.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwards.school.domain.Student;
 import ru.hogwards.school.services.StudentService;
@@ -41,8 +42,9 @@ public class StudentController {
     }
 
     @DeleteMapping("{id}") /// http://localhost:8080/school/student/remove/1
-    public Student removeStudent(@PathVariable long id){
-        return studentService.removeStudent(id);
+    public ResponseEntity<Student> removeStudent(@PathVariable long id){
+        studentService.removeStudent(id);
+        return ResponseEntity.ok().build();
     }
 
 }
