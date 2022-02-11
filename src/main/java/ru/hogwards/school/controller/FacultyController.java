@@ -7,7 +7,7 @@ import ru.hogwards.school.services.FacultyService;
 
 import java.util.Collection;
 
-
+//localhost:8080/school/swagger-ui/index.html#
 @RestController
  @RequestMapping("/faculty")
 public class FacultyController {
@@ -18,17 +18,17 @@ public class FacultyController {
         this.facultyService = facultyService;
     }
 
-     @PostMapping /// http://localhost:8080/school/faculty/create
+     @PostMapping
     public Faculty createFaculty( @RequestBody Faculty faculty){
        return facultyService.addFaculty(faculty);
     }
 
-    @GetMapping("{id}") /// http://localhost:8080/school/faculty/1
+    @GetMapping("{id}")
     public Faculty getFaculty(@PathVariable long id){
         return facultyService.getFaculty(id);
     }
 
-    @GetMapping("/getAll") /// http://localhost:8080/school/faculty/getAll
+    @GetMapping("/getAll")
     public Collection<Faculty> getFaculty(){
         return facultyService.getAll();
     }
@@ -43,10 +43,13 @@ public class FacultyController {
         return facultyService.getByColor(color);
     }
 
-    @DeleteMapping("{id}") /// http://localhost:8080/school/faculty/remove/1
+    @DeleteMapping("{id}")
     public ResponseEntity<Faculty> removeFaculty(@PathVariable long id){
         facultyService.removeFaculty(id);
         return ResponseEntity.ok().build();
     }
-
+    @GetMapping("/filter/")
+    public Collection<Faculty> getByNameOrFaculty(@RequestParam(required = false) String name, @RequestParam(required = false) String color){
+        return facultyService.getByNameOrColor(name,color);
+    }
 }
