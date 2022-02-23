@@ -27,7 +27,7 @@ public class StudentController {
         return studentService.getStudent(id);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public Collection<Student> getStudent(){
         return studentService.getAll();
     }
