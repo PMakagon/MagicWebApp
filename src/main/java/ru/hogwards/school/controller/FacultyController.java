@@ -28,7 +28,7 @@ public class FacultyController {
         return facultyService.getFaculty(id);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public Collection<Faculty> getFaculty(){
         return facultyService.getAll();
     }
@@ -48,8 +48,12 @@ public class FacultyController {
         facultyService.removeFaculty(id);
         return ResponseEntity.ok().build();
     }
-    @GetMapping("/filter/")
-    public Collection<Faculty> getByNameOrFaculty(@RequestParam(required = false) String name, @RequestParam(required = false) String color){
-        return facultyService.getByNameOrColor(name,color);
+    @GetMapping("/filter")
+    public Collection<Faculty> getByNameIgnoreCase(@RequestParam String name){
+        return facultyService.findByNameIgnoreCase(name);
+    }
+    @GetMapping("/filter")
+    public Collection<Faculty> getByNameOrColorIgnoreCase(@RequestParam String color){
+        return facultyService.getByColorIgnoreCase(color);
     }
 }
