@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.hogwards.school.domain.Student;
 import ru.hogwards.school.services.StudentService;
 import java.util.Collection;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/student")
@@ -16,17 +17,17 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PostMapping /// http://localhost:8080/school/student/create
+    @PostMapping
     public Student createStudent(@RequestBody Student student){
         return studentService.addStudent(student);
     }
 
-    @GetMapping("{id}") /// http://localhost:8080/school/student/1
+    @GetMapping("{id}")
     public Student getFaculty(@PathVariable long id){
         return studentService.getStudent(id);
     }
 
-    @GetMapping("/getAll") /// http://localhost:8080/school/student/getAll
+    @GetMapping("/getAll")
     public Collection<Student> getStudent(){
         return studentService.getAll();
     }
@@ -41,10 +42,14 @@ public class StudentController {
         return studentService.getByAge(age);
     }
 
-    @DeleteMapping("{id}") /// http://localhost:8080/school/student/remove/1
+    @DeleteMapping("{id}")
     public ResponseEntity<Student> removeStudent(@PathVariable long id){
         studentService.removeStudent(id);
         return ResponseEntity.ok().build();
+    }
+    @GetMapping("/age")
+    public Collection<Student> getByAgeBetween( @RequestParam(required = false) int min, @RequestParam(required = false) int max){
+        return studentService.getByAgeBetween(min,max);
     }
 
 }
