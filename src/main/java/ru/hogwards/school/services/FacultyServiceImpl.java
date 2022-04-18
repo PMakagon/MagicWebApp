@@ -42,12 +42,22 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Collection<Faculty> getAll() {
-        return Collections.unmodifiableCollection(facultyRepository.findAll());
+        return facultyRepository.findAll();
     }
 
     @Override
     public Collection<Faculty> getByColor(String color) {
         return Collections.unmodifiableCollection(facultyRepository.findByColor(color));
+    }
+
+    @Override
+    public Collection<Faculty> getByColorIgnoreCase(String color){
+        return facultyRepository.findByColorIgnoreCase(color);
+    }
+
+    @Override
+    public Collection<Faculty> findByNameIgnoreCase(String name) {
+        return facultyRepository.findByNameIgnoreCase(name);
     }
 
     @Override
