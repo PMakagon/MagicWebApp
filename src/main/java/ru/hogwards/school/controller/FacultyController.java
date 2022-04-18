@@ -48,12 +48,8 @@ public class FacultyController {
         facultyService.removeFaculty(id);
         return ResponseEntity.ok().build();
     }
-    @GetMapping("/filter")
-    public Collection<Faculty> getByNameIgnoreCase(@RequestParam String name){
+    @GetMapping("/name/{name}")
+    public Collection<Faculty> getByNameIgnoreCase(@PathVariable String name){
         return facultyService.findByNameIgnoreCase(name);
-    }
-    @GetMapping("/filter")
-    public Collection<Faculty> getByNameOrColorIgnoreCase(@RequestParam String color){
-        return facultyService.getByColorIgnoreCase(color);
     }
 }
