@@ -10,6 +10,8 @@ public interface StudentService {
     Collection<Student> getAll();
     Collection<Student> getByAge(int age);
     void removeStudent(long id);
-
     Collection<Student> getByAgeBetween(int min, int max);
+    Integer getAmountOfStudents();
+    Integer averageStudentsAge();
+    Collection<Student> fiveLastStudents();
 }
