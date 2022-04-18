@@ -9,5 +9,7 @@ public interface FacultyService {
     Faculty editFaculty(Faculty faculty);
     Collection<Faculty> getAll();
     Collection<Faculty> getByColor(String color);
+    Collection<Faculty> getByColorIgnoreCase(String color);
+    Collection<Faculty> findByNameIgnoreCase(String name);
     void removeFaculty(long id);
 }
