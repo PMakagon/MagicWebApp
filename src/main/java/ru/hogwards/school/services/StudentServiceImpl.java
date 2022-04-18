@@ -58,6 +58,6 @@ public class StudentServiceImpl implements StudentService{
     }
     @Override
     public Collection<Student> getByAgeBetween(int min, int max){
-        return Collections.unmodifiableCollection(studentRepository.findByAgeBetween(min, max));
+        return studentRepository.findByAgeBetween(min, max);
     }
 }

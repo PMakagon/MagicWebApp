@@ -58,6 +58,12 @@ public class FacultyServiceImpl implements FacultyService {
     public void removeFaculty(long id) {
         facultyRepository.deleteById(id);
     }
+
+    @Override
+    public Collection<Faculty> getByColorIgnoreCase(String color){
+        return facultyRepository.findByColorIgnoreCase(color);
+    }
+
     @Override
     public Collection<Faculty> getByNameOrColor(String name, String color){
         if(color==null) {
