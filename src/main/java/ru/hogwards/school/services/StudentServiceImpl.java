@@ -3,7 +3,6 @@ package ru.hogwards.school.services;
 import org.springframework.stereotype.Service;
 import ru.hogwards.school.domain.Student;
 import ru.hogwards.school.exceptions.BadRequestException;
-import ru.hogwards.school.exceptions.ObjectNotFoundException;
 import ru.hogwards.school.repository.StudentRepository;
 import java.util.Collection;
 import java.util.Collections;
@@ -56,5 +55,9 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public void removeStudent(long id) {
         studentRepository.deleteById(id);
+    }
+    @Override
+    public Collection<Student> getByAgeBetween(int min, int max){
+        return studentRepository.findByAgeBetween(min, max);
     }
 }

@@ -3,6 +3,7 @@ package ru.hogwards.school.services;
 import org.springframework.stereotype.Service;
 import ru.hogwards.school.domain.Faculty;
 import ru.hogwards.school.exceptions.BadRequestException;
+import ru.hogwards.school.exceptions.ObjectNotFoundException;
 import ru.hogwards.school.repository.FacultyRepository;
 import java.util.Collection;
 import java.util.Collections;
@@ -47,7 +48,10 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Collection<Faculty> getByColor(String color) {
-        return Collections.unmodifiableCollection(facultyRepository.findByColor(color));
+        if(color==null) {
+            throw new BadRequestException();
+        }
+        return facultyRepository.findByColor(color);
     }
 
     @Override
@@ -64,4 +68,18 @@ public class FacultyServiceImpl implements FacultyService {
     public void removeFaculty(long id) {
         facultyRepository.deleteById(id);
     }
+
+    @Override
+    public Collection<Faculty> getByColorIgnoreCase(String color){
+        return facultyRepository.findByColorIgnoreCase(color);
+    }
+
+    @Override
+    public Collection<Faculty> getByNameOrColor(String name, String color){
+        if(color==null) {
+            throw new BadRequestException();
+        }
+        return facultyRepository.findByNameOrColorIgnoreCase(name,color);
+    }
+
 }
